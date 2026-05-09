@@ -11,13 +11,19 @@ FROM [Polio_data].[dbo].[Vaccinated Stats];
 SELECT TOP (10) * 
 FROM [Polio_data].[dbo].[Vaccine Info];
 
+SELECT TOP (10) *
+FROM [Polio_data].[dbo].[Life-Expectancy-Data-Updated]
+
+
+
+
 --- Check Column Names & Data Types
 
 EXEC sp_help [Coverage Estimates];
 EXEC sp_help [Polio Cases];
 EXEC sp_help [Vaccinated Stats];
 EXEC sp_help [Vaccine Info];
-
+EXEC sp_help [Life-Expectancy-Data-Updated];
 --- Basic Cleaning
 SELECT *
 FROM [Polio_data].[dbo].[Coverage Estimates]
@@ -32,7 +38,12 @@ WHERE coverage Is Not Null;
 
 SELECT *
 FROM who_unicef_coverage_clean;
-
+--- Clean Nigeria dataset
+SELECT *
+INTO NIG_Life_Expectancy_Data
+FROM [Polio_data].[dbo].[Life-Expectancy-Data-Updated]
+WHERE Country like 'Nigeria'
+	
 ---Standardize Country Names
 
 SELECT DISTINCT Entity
